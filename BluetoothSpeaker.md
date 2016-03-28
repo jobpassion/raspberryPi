@@ -84,6 +84,15 @@
   Connect the source to the sink:
     
     pactl load-module module-loopback source=bluez_source.XX_XX_XX_XX_XX_XX sink=alsa_output.xxxxxxx
+  config raspberryPi use headset output Interface:
+    
+    raspi-config:
+      Advanced Options
+      	Audio
+      	  Force 3.5mm ('headphone') jack
+  now apply the volume settings:
+    amixer set Master 100%
+    pacmd set-sink-volume 0 65537
   play some music from phone, raspberryPi should have redirected the sound to your headset.Just like you have plugin headset directly in the phone
 
 
