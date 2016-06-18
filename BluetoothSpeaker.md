@@ -22,6 +22,18 @@
       trust xx:xx:xx:xx:xx:xx(your phone bluetooth mac)
       connect xx:xx:xx:xx:xx:xx(use pi connect phone first, next time you can connect phone with pi on your phone)
   if connected, completed checking of bluetooth
+  
+  If you're having problems connecting bluetooth try restarting pulseaudio:
+  
+  	pulseaudio -k
+  	pulseaudio --start
+  If that doesn't work you may need to load this module:
+  
+  	sudo pactl load-module module-bluetooth-discover
+  Sometimes it works if you use the command without "sudo"
+  
+  If you have more problems this [stack exchange page](http://unix.stackexchange.com/questions/258074/error-when-trying-to-connect-to-bluetooth-speaker-org-bluez-error-failed) or this [arch linux page](https://wiki.archlinux.org/index.php/Bluetooth_headset) may be of help.
+  
 #### Config Bluetooth
   we'll config Bluetooth, to enable Bluetooth Audio
   cmds:
@@ -90,9 +102,12 @@
       Advanced Options
       	Audio
       	  Force 3.5mm ('headphone') jack
+      	  
   now apply the volume settings:
-    amixer set Master 100%
+  
+    amixer -D pulse sset Master 0%
     pacmd set-sink-volume 0 65537
+    
   play some music from phone, raspberryPi should have redirected the sound to your headset.Just like you have plugin headset directly in the phone
 
 
