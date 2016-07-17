@@ -14,6 +14,7 @@
   	
     apt-get update
     apt-get install bluez pulseaudio-module-bluetooth python-gobject python-gobject-2
+    usermod -a -G lp myusername
 #### Check And Pair Bluetooth
   check cmds:
   
